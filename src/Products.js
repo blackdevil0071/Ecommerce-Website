@@ -25,7 +25,7 @@ const productsArr = [
 
 const AvailableProducts = () => {
     const productsList = productsArr.map((product, index) => (
-      <Col key={index} xs={12} md={6} lg={6}>
+      <Col key={index} xs={8} md={4}>
         {/* Each product card */}
         <div className="card mb-3">
           <img

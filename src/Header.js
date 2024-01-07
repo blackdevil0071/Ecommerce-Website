@@ -21,7 +21,7 @@ const Header = () => {
           <Navbar.Brand>STORE</Navbar.Brand>
           <Navbar.Brand>ABOUT</Navbar.Brand>
         </Container>
-        <Button onClick={handleCartClick} variant="dark" className="border border-primary ms-auto">
+        <Button onClick={handleCartClick} variant="outline-primary">
           Cart
         </Button>
       </Navbar>

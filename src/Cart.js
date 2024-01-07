@@ -1,42 +1,50 @@
-import React from "react";
-import { Button } from "react-bootstrap";
 
-const cartElements = [
-  {
-    title: "Colors",
-    price: 100,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-    quantity: 2,
-  },
-  {
-    title: "Black and white Colors",
-    price: 50,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-    quantity: 3,
-  },
-  {
-    title: "Yellow and Black Colors",
-    price: 70,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-    quantity: 1,
-  },
-];
+// Cart.js
+import React from 'react';
+import { Table, Button } from 'react-bootstrap';
+import { useCart } from './CartProvider';
 
 const Cart = () => {
-  return (
-    <div>
-      {cartElements.map((cartItem, index) => (
-        
-        <div key={index}>
-          <p>{cartItem.title}</p>
-          <img src={cartItem.imageUrl} alt="Cart Image"></img>
-          <p>{cartItem.price}</p>
-          <p>{cartItem.quantity}</p>
+  const { items, totalAmount, removeItemFromCart } = useCart();
 
-          <button>Remove</button>
-        </div>
-      ))}
-    </div>
+  return (
+    <>
+      <Table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((cartItem, index) => (
+            <tr key={index}>
+              <td>
+                <img
+                  src={cartItem.imageUrl}
+                  className="img-fluid border-0 col-4"
+                  alt={cartItem.title}
+                />
+                <p>{cartItem.title}</p>
+              </td>
+              <td>${cartItem.price}</td>
+              <td className="d-flex align-items-center">{cartItem.quantity}</td>
+              <td>
+                <Button
+                  className="btn btn-danger"
+                  onClick={() => removeItemFromCart(cartItem.id)}
+                >
+                  Remove
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      <h3 className="col-md-8 offset-md-4 text-right">Total: ${totalAmount}</h3>
+    </>
   );
 };
 

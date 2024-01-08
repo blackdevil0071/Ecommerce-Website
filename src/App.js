@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import About from "./About";
 
 import Cart from "./Cart";
+import Home from "./Home";
 const App = () => {
   return (
     <CartProvider>
@@ -15,6 +16,7 @@ const App = () => {
           <Header />
           <Routes>
             <Route path="/" element={<AvailableProducts />} />
+            <Route path="/home" element={<Home/>}/>
             <Route path="/about" element={<About />} />
             <Route path="/cart" element={<Cart/>}/>
           </Routes>

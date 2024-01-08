@@ -20,7 +20,7 @@ const Header = () => {
     <>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand as={Link} to="/">
+          <Navbar.Brand as={Link} to="/home">
             HOME
           </Navbar.Brand>
           <Navbar.Brand as={Link} to="/">
@@ -35,7 +35,7 @@ const Header = () => {
         </Button>
       </Navbar>
 
-      <Card className="shadow-lg bg-secondary text-white">
+      <Card className="border-0" bg="secondary" text="white">
         <Card.Body>
           <Container className="display-1">The Generics</Container>
         </Card.Body>

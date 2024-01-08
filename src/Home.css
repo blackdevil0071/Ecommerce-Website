@@ -1,0 +1,13 @@
+.custom-table tbody tr {
+    border-bottom: 1px solid #343a40; /* Dark color for the bottom border */
+  }
+  
+  .custom-border {
+    height: 2px;
+    background-color: #343a40; /* Dark color for the border */
+    margin: 10px 0; /* Adjust the margin as needed */
+  }
+  .text-grey {
+    color: rgb(179, 178, 178);
+  }
+  

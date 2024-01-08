@@ -29,6 +29,9 @@ const Header = () => {
           <Navbar.Brand as={Link} to="/about">
             ABOUT
           </Navbar.Brand>
+          <Navbar.Brand as={Link} to="/contactus">
+            CONTACT US
+          </Navbar.Brand>
         </Container>
         <Button onClick={handleCartClick} variant="outline-primary">
           Cart ({items.length})

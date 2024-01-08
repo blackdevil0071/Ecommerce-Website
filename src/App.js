@@ -8,6 +8,7 @@ import About from "./About";
 
 import Cart from "./Cart";
 import Home from "./Home";
+import ContactUs from "./ContactUs";
 const App = () => {
   return (
     <CartProvider>
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/home" element={<Home/>}/>
             <Route path="/about" element={<About />} />
             <Route path="/cart" element={<Cart/>}/>
+            <Route path="/contactus" element={<ContactUs/>}/>
           </Routes>
         </div>
       </Router>

@@ -1,80 +1,79 @@
 import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { Container, Row, Col, Button, Image, Card } from "react-bootstrap";
 import { useCart } from "./CartProvider";
 
-const AvailableProducts = () => {
+const Products = () => {
+  const { productTitle } = useParams();
   const { addItemToCart } = useCart();
-  const productsArr = [
-    // ... your product data
-    {
+
+  const productDetails = {
+    Colors: {
       title: "Colors",
       price: 100,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+      imageUrl: "https://example.com/colors.jpg",
+      description: "Beautiful colors for your collection.",
     },
-    {
-      title: "Black and white Colors",
-      price: 50,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-    },
-    {
-      title: "Yellow and Black Colors",
-      price: 70,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-    },
-    {
-      title: "Blue Color",
-      price: 100,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
-    },
-    {
-      title: "Colors",
-      price: 100,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-    },
-  ];
-  const handleAddToCart = (product) => {
+    Black_and_white_Colors: {
+        title: "Black and white Colors",
+        price: 50,
+        imageUrl:
+          "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+      },
+    Yellow_and_Black_Colors: {
+        title: "Yellow and Black Colors",
+        price: 70,
+        imageUrl:
+          "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+      },
+    Blue_Color: {
+        title: "Blue Color",
+        price: 100,
+        imageUrl:
+          "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
+      },
+  };
+
+  const product = productDetails[productTitle];
+
+  if (!product) {
+    return <h2>Product not found</h2>;
+  }
+
+  const handleAddToCart = () => {
     addItemToCart({
-      id: product.title, // You might want to use a unique identifier for the product
+      id: product.title,
       title: product.title,
       price: product.price,
-      quantity: 1, // Default quantity when adding to cart
+      quantity: 1,
       imageUrl: product.imageUrl,
     });
   };
 
-  const productsList = productsArr.map((product, index) => (
-    <Col key={index} xs={12} sm={6} md={4} lg={3} className="offset-2">
-      {/* Each product card */}
-      <div className="card mb-3">
-        <img
-          src={product.imageUrl}
-          className="card-img-top border-0"
-          alt={product.title}
-        />
-        <div className="card-body">
-          <h5 className="card-title">{product.title}</h5>
-          <div className="d-flex justify-content-between align-items-center">
-            <p className="card-text d-inline">Price: ${product.price}</p>
-            <Button variant="info" onClick={() => handleAddToCart(product)}>
-              ADD TO CART
-            </Button>
-          </div>
-        </div>
-      </div>
-    </Col>
-  ));
-
   return (
     <Container>
-      <h1 className="mb-4">Music</h1>
-      <Row>{productsList}</Row>
+      <h2>{product.title}</h2>
+      <Row>
+        <Col lg={6}>
+          <Card className="mb-3">
+            <Image src={product.imageUrl} alt={product.title} fluid />
+          </Card>
+        </Col>
+        <Col lg={6}>
+          <Card>
+            <Card.Body>
+              <Card.Title>{product.title}</Card.Title>
+              <Card.Text>{product.description}</Card.Text>
+              <p className="h4">${product.price}</p>
+              <Button variant="info" onClick={handleAddToCart}>
+                ADD TO CART
+              </Button>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
     </Container>
   );
 };
 
-export default AvailableProducts;
+export default Products;
